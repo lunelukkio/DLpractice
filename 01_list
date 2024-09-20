@@ -1,0 +1,64 @@
+import sys
+import numpy as np
+
+
+class MyForm():
+    def __init__(self):
+        x = 2
+        y = x
+        x = 3
+        print(x)
+        print(y)
+
+        x = [1, 2]
+        y = x
+        x = [3, 4]
+
+        print(x)
+        print(y)
+
+        x = [1, 2]
+        y = x
+        x[0] = 3
+        print(x)
+        print(y)
+
+        x = np.array([1, 2])
+        y = x
+        x[0] = 3
+        print(x)
+        print(y)
+
+        x = np.array([[1], [2]])
+        y = x
+        x[0] = 3
+        print(x)
+        print(y)
+        
+        x: int = 6
+        y: int = 5
+        z: float = x/y
+        print(z)
+
+        first_example_list = [1, 2, 3, 4, 5]
+        second_example_list = [6, 7, 8, 9, 10]
+        sum_list = first_example_list + second_example_list
+        print(sum_list)
+        
+        numpy_first_list = np.array([1, 2, 3, 4, 5])
+        numpy_second_list = np.array([6, 7, 8, 9, 10])
+        print(numpy_first_list + numpy_second_list)
+
+        first_list = [1, 2, 3, 4, 5]
+        second_list = [6, 7, 8, 9, 10]
+        sum_list = first_list + second_list
+        print(sum_list)
+        print(sum_list[5])
+        print(sum_list[3:6])
+        print(sum_list[:])
+        print(sum_list[-1])
+
+
+
+if __name__ == "__main__":
+    a = MyForm()
