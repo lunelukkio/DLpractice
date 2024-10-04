@@ -6,15 +6,9 @@ Created on Wed Sep 18 15:38:37 2024
 """
 
 
-class HistAndCyto():
-    def __init__(self):
-        self.student = {
-            'Kadono':5,
-            'Yang':4,
-            'Li':3,
-            'Wang':2,
-            'Lu':1
-        }
+class Lab:
+    def __init__(self, lab_member):
+        self.student = lab_member
         
     def degree(self, person):
         if self.student[person] >= 4:
@@ -26,9 +20,13 @@ class HistAndCyto():
 
 
 if __name__ == '__main__':
-    our_lab = HistAndCyto()
-    our_lab.degree('Kadono')
-    our_lab.degree('Yang')
-    our_lab.degree('Li')
-    our_lab.degree('Wang')
-    our_lab.degree('Lu')   
+    lab_member = {'Sato':6, 'Suzuki':5, 'Tanaka':3}
+    his_and_cyto = Lab(lab_member)
+
+    his_and_cyto.degree('Sato')
+    his_and_cyto.degree('Suzuki')
+    his_and_cyto.degree('Tanaka')
+    
+    physi_lab_member = {'Ono':0}
+    physiology = Lab(physi_lab_member)
+    physiology.degree('Ono')
