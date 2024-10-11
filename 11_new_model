@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Oct 11 15:12:47 2024
+
+@author: lunel
+"""
+
+import torch
+from torch import nn
+from torch.nn import functional as F
+
+from torch import optim
+
+class Mlp_net(nn.Module):
+    def __init__(self):
+        super().__init__()
+        
+        # forward function
+        self.fc1 = nn.Linear(3, 5)   
+        self.fc2 = nn.Linear(5, 2)
+        
+        # loss function
+        self.criterion = nn.MSELoss()
+        # optimize function
+        self.optimizer = optim.Adam(self.parameters())
+        
+    def forward(self, x):
+        x = self.fc1(x)
+        print('passed fc1\n', x)
+        x = F.relu(x)
+        print('passed reru()\n', x)
+        x = self.fc2(x)
+        
+        return x
+    
+model = Mlp_net()
+x = torch.Tensor([0,1,2])
+
+output = model(x)
+
+print('output model\n', output)

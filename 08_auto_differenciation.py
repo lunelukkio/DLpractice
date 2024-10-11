@@ -17,3 +17,16 @@ out = 4*v + 6*w + 1
 out.backward()
 print(v.grad)
 print(w.grad)
+
+if torch.cuda. is_available():
+    gpu = torch.device("cuda")
+    cpu = torch.device("cpu")
+    data1 = torch.zeros((2, 2), device = gpu)
+    data_cpu = data1.to(cpu)
+    data_gpu = data_cpu.to(gpu)
+    print("use CPU")
+    print(data_cpu)
+    print("use GPU")
+    print(data_gpu)
+else:
+    print("no GPU available")
