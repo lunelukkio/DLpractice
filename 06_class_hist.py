@@ -23,23 +23,8 @@ class Lab:
 
 
 if __name__ == '__main__':
-    lab_member = {'Sato':6, 'Suzuki':5, 'Tanaka':3}
+    lab_member = {'Kadono':6, 'Yang':5, 'Li':3, 'Wang':2, 'Lu':1}
     # 実例１
     his_and_cyto = Lab(lab_member)
-    his_and_cyto.degree('Sato')
-    his_and_cyto.degree('Suzuki')
-    his_and_cyto.degree('Tanaka')
-    
-    # 実例２
-    physi_lab_member = {'Ono':0, 'Saito':3}
-    physiology = Lab(physi_lab_member)
-    physiology.degree('Ono')
-    
-    # python recognaize a valiable as function
-    print(his_and_cyto.get_all_person()) 
-    # python recognaize a valiable as object
-    print(physiology.get_all_person)  
-    
-    # 実例３
-    test = Lab(physiology.get_all_person)
-    print(test.student())
+    his_and_cyto.degree('Li')
+
