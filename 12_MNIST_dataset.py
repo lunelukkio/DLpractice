@@ -7,7 +7,10 @@ Created on Fri Oct 11 16:42:35 2024
 
 from torch import utils
 from torchvision import datasets
+from torchvision import models
 import torchvision.transforms as transforms
+import matplotlib.pyplot as plt
+
 
 import torch
 from torch import nn, optim
@@ -29,18 +32,23 @@ class MlpNet(nn.Module):
         super().__init__()
         
         # forward function
-        self.fc1 = nn.Linear(784, 256)   
-        self.fc2 = nn.Linear(256, 10)
+        self.fc1 = nn.Linear(784, 512)   
+        self.fc2 = nn.Linear(512, 10)
         
         # loss function
-        self.criterion = nn.MSELoss()
+        self.criterion = nn.MSELoss()  # mean square error
+        #self.criterion = nn.CrossEntropyLoss()  # use softmax()
         # optimize function
         self.optimizer = optim.Adam(self.parameters(), lr=0.001)  # learing rate
+        #self.optimizer = optim.SGD(self.parameters(), lr=0.0001)
+        #self.optimizer = optim.SGD(self.parameters(), lr=0.0001, momentum=0.9)
         
     def forward(self, x):
         x = self.fc1(x)
         #print('passed fc1\n', x)
         x = F.relu(x)
+        #x = F.softmax(x)
+        #x = torch.sigmoid(x)
         #print('passed reru()\n', x)
         x = self.fc2(x)
         
@@ -104,10 +112,39 @@ def test(model, data_loader):
     
     return acc
 
+# single image test
+def classify_single_image(model, test_loader, image_num):
+    model.eval()  # evaluation mode
+
+    # load 100 images as images
+    data_iter = iter(test_loader)
+    images, labels = next(data_iter)
+
+    # image number from images for test
+    image = images[image_num].reshape(-1, 28*28*1)
+    label = labels[image_num]
+
+    # evaluation by deep learning
+    with torch.no_grad():  # do not run grad calculatoin for faster culculation
+        output = model(image)
+
+    # get estimation
+    _, predicted = torch.max(output, axis=1)
+
+    # result
+    print(f"Actual Label: {label.item()}, Predicted Label: {predicted.item()}")
+
+    # show data
+    plt.imshow(images[image_num].squeeze(), cmap="gray")
+    plt.title(f"Predicted: {predicted.item()}, Actual: {label.item()}")
+    plt.show()
+
 if __name__ == '__main__':
+    
     model = MlpNet()
     acc, loss = train(model, train_loader)
     print(f"accuracy： {acc}, loss: {loss}")
-    
     test_acc = test(model, test_loader)
     print(test_acc)
+    
+    classify_single_image(model, test_loader, 20)
