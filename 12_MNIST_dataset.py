@@ -36,8 +36,8 @@ class MlpNet(nn.Module):
         self.fc2 = nn.Linear(512, 10)
         
         # loss function
-        self.criterion = nn.MSELoss()  # mean square error
-        #self.criterion = nn.CrossEntropyLoss()  # use softmax()
+        #self.criterion = nn.MSELoss()  # mean square error
+        self.criterion = nn.CrossEntropyLoss()  # use softmax()
         # optimize function
         self.optimizer = optim.Adam(self.parameters(), lr=0.001)  # learing rate
         #self.optimizer = optim.SGD(self.parameters(), lr=0.0001)
