@@ -19,3 +19,6 @@ print(y)
 y.backward()
 for i in range(4):
     print(x.grad)
+    
+    
+print(torch.eye(10)[[3, 7]])

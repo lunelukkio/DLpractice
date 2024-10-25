@@ -46,7 +46,6 @@ class MlpNet(nn.Module):
         x = self.fc1(x)
         x = F.relu(x)
         x = self.fc2(x)
-        print(x)
         return x
     
 def train(model, train_loader):
@@ -93,6 +92,8 @@ def classify_single_image(model, test_loader, image_num):
 
     # result
     print(f"Actual Label: {label.item()}, Predicted Label: {predicted.item()}")
+    
+    print(output)
 
     # show data
     plt.imshow(images[image_num].squeeze(), cmap="gray")
@@ -105,4 +106,4 @@ if __name__ == '__main__':
     train(model, train_loader)
     test(model, test_loader)
 
-    classify_single_image(model, test_loader, 20)
+    classify_single_image(model, test_loader, 5)
